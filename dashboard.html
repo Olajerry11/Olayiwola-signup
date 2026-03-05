@@ -11,7 +11,7 @@
   <style>
     .dashboard {
       padding: 40px 20px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
       text-align: center;
     }
@@ -24,7 +24,7 @@
       margin-bottom: 5px;
     }
 
-    .dashboard p {
+    .dashboard > p {
       color: #555;
       font-size: 1.05em;
       margin-bottom: 40px;
@@ -45,52 +45,99 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
     }
 
-    /* UPGRADE: Made cards feel more like clickable dashboard tools */
+    /* UPGRADED CARDS: Added active states */
     .card {
       background: #ffffff;
-      padding: 25px 20px;
+      padding: 20px 15px;
       border-radius: 12px;
-      width: 200px;
+      width: 160px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      border: 1px solid #eaeaea;
+      border: 2px solid #eaeaea;
       transition: all 0.3s ease;
-      cursor: pointer; /* Shows it's clickable */
-      font-weight: 500;
+      cursor: pointer; 
+      font-weight: 600;
       color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .card span {
-      font-size: 2em; /* Makes the emojis pop! */
-    }
+    .card span { font-size: 1.8em; }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(50, 44, 132, 0.15);
-      border-color: #322C84;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(50, 44, 132, 0.1);
     }
 
+    /* The glowing gold border for the selected card */
+    .card.active {
+      border-color: #E8B000;
+      background: #faf8f0;
+      box-shadow: 0 6px 15px rgba(232, 176, 0, 0.2);
+    }
+
+    /* --- THE NEW CONTENT PANELS --- */
+    .content-area {
+      margin-top: 40px;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(50, 44, 132, 0.08);
+      text-align: left;
+      min-height: 250px;
+    }
+
+    .tab-panel {
+      display: none; /* Hidden by default */
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    /* Shows the active panel */
+    .tab-panel.active-panel {
+      display: block; 
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-panel h2 {
+      color: #322C84;
+      margin-top: 0;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* Styles for the fake professional data inside panels */
+    .data-list { list-style: none; padding: 0; margin: 0; }
+    .data-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; color: #555;}
+    .data-list li:last-child { border: none; }
+    .badge { background: #2ecc71; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8em; font-weight: 600; }
+    .badge.pending { background: #f39c12; }
+    
+    .stats-grid { display: flex; gap: 20px; }
+    .stat-box { background: #f8f9fc; padding: 20px; border-radius: 10px; flex: 1; text-align: center; border: 1px solid #eee; }
+    .stat-box h3 { font-size: 2em; color: #E8B000; margin: 0; }
+    .stat-box p { margin: 5px 0 0 0; font-size: 0.9em; font-weight: 500; }
+
+    .devotion-quote { font-size: 1.2em; font-style: italic; color: #444; border-left: 4px solid #322C84; padding-left: 15px; background: #f8f9fc; padding: 20px; border-radius: 0 8px 8px 0; }
+
     .logout {
-      margin-top: 50px;
+      margin-top: 40px;
       color: #555;
       font-size: 0.9em;
     }
 
     .logout a {
-      color: #e74c3c; /* Red color implies a logout/destructive action */
+      color: #e74c3c; 
       text-decoration: none;
       font-weight: 600;
-      transition: opacity 0.2s ease;
-    }
-
-    .logout a:hover {
-      opacity: 0.7;
     }
   </style>
 </head>
@@ -99,14 +146,72 @@
 
   <main class="dashboard">
     <h1 class="welcome" id="welcomeName">Welcome! 👋</h1>
-    <p>Your dashboard is ready. Start exploring your tools below.</p>
+    <p>Your workspace is ready. Select a tool to get started.</p>
 
     <div class="features">
-      <div class="card"><span>🛠️</span> Projects</div>
-      <div class="card"><span>🎨</span> Templates</div>
-      <div class="card"><span>📁</span> File Manager</div>
-      <div class="card"><span>📊</span> Analytics</div>
-      <div class="card"><span>🙏</span> Devotions</div>
+      <div class="card active" onclick="switchTab(event, 'projects')"><span>🛠️</span> Projects</div>
+      <div class="card" onclick="switchTab(event, 'templates')"><span>🎨</span> Templates</div>
+      <div class="card" onclick="switchTab(event, 'files')"><span>📁</span> Files</div>
+      <div class="card" onclick="switchTab(event, 'analytics')"><span>📊</span> Analytics</div>
+      <div class="card" onclick="switchTab(event, 'devotions')"><span>🙏</span> Devotions</div>
+    </div>
+
+    <div class="content-area">
+      
+      <div id="projects" class="tab-panel active-panel">
+        <h2>Recent Projects</h2>
+        <ul class="data-list">
+          <li>Olayiwola Portfolio Redesign <span class="badge">Live</span></li>
+          <li>Client E-Commerce App <span class="badge pending">In Progress</span></li>
+          <li>Church Management System <span class="badge">Live</span></li>
+        </ul>
+      </div>
+
+      <div id="templates" class="tab-panel">
+        <h2>Premium Templates</h2>
+        <ul class="data-list">
+          <li>Minimalist Blog Theme <span>⬇️ 14 Downloads</span></li>
+          <li>Modern SaaS Landing Page <span>⬇️ 42 Downloads</span></li>
+          <li>Creative Agency Portfolio <span>⬇️ 8 Downloads</span></li>
+        </ul>
+      </div>
+
+      <div id="files" class="tab-panel">
+        <h2>File Manager</h2>
+        <ul class="data-list">
+          <li>📄 index.html <span>12 KB</span></li>
+          <li>🎨 style.css <span>8 KB</span></li>
+          <li>⚙️ script.js <span>4 KB</span></li>
+          <li>🖼️ olayiwola-logo.png <span>1.2 MB</span></li>
+        </ul>
+      </div>
+
+      <div id="analytics" class="tab-panel">
+        <h2>Site Analytics (Last 30 Days)</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <h3>1,248</h3>
+            <p>Total Visitors</p>
+          </div>
+          <div class="stat-box">
+            <h3>3.4m</h3>
+            <p>Avg. Session</p>
+          </div>
+          <div class="stat-box">
+            <h3>28%</h3>
+            <p>Bounce Rate</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="devotions" class="tab-panel">
+        <h2>Daily Devotion</h2>
+        <div class="devotion-quote">
+          "Commit to the Lord whatever you do, and he will establish your plans."
+          <br><br><strong>- Proverbs 16:3</strong>
+        </div>
+      </div>
+
     </div>
 
     <div class="logout">
@@ -118,18 +223,32 @@
     // 1. Fetch name and display it
     const name = localStorage.getItem("olayiUser");
     const welcome = document.getElementById("welcomeName");
-
     if (name) {
       welcome.textContent = `Welcome, ${name}! 👋`;
-    } else {
-      welcome.textContent = "Welcome, Guest! 👋";
     }
 
-    // 2. UPGRADE: The logic to properly clear memory on logout
+    // 2. Tab Switching Logic
+    function switchTab(event, tabId) {
+      // Remove 'active' class from all cards
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => card.classList.remove('active'));
+
+      // Remove 'active-panel' from all content panels
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach(panel => panel.classList.remove('active-panel'));
+
+      // Add 'active' to the clicked card
+      event.currentTarget.classList.add('active');
+
+      // Add 'active-panel' to the correct content panel
+      document.getElementById(tabId).classList.add('active-panel');
+    }
+
+    // 3. Logout logic
     function logoutUser(event) {
-      event.preventDefault(); // Stop normal link click
-      localStorage.removeItem("olayiUser"); // Delete the saved name!
-      window.location.href = "login.html"; // Send them back to the start
+      event.preventDefault(); 
+      localStorage.removeItem("olayiUser"); 
+      window.location.href = "login.html"; 
     }
   </script>
 </body>
