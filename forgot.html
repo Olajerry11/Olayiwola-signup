@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgot Password | OLAYIWOLA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <img src="olayiwola-logo.png" alt="Logo" class="logo-img" />
+    </div>
+
+    <div class="form-container">
+      <h2>Reset Password</h2>
+      <p class="subtitle">Enter your email address to receive a reset link</p>
+
+      <form onsubmit="return fakeReset()">
+        <input type="email" id="resetEmail" placeholder="Email" required />
+        <small class="error" id="resetError"></small>
+        <button type="submit">Send Reset Link</button>
+
+        <p class="login-text">
+          Remembered your password?
+          <a href="login.html">Go back to Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function fakeReset() {
+      const email = document.getElementById("resetEmail").value;
+      const resetError = document.getElementById("resetError");
+
+      resetError.innerText = "";
+
+      if (!email.includes("@")) {
+        resetError.innerText = "Please enter a valid email";
+        return false;
+      }
+
+      alert("A password reset link has been sent to: " + email);
+      return false; // prevent actual submit
+    }
+  </script>
+</body>
+</html>

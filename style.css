@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top {
+  background: linear-gradient(135deg, #322C84, #4B3AB7);
+  width: 100%;
+  padding: 30px 0;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  text-align: center;
+}
+
+.logo-img {
+  width: 180px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.form-container {
+  margin-top: -30px;
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(50, 44, 132, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(50, 44, 132, 0.3);
+}
+
+.form-container h2 {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #322C84;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1em;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #322C84;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.2em;
+}
+
+.checkbox-label {
+  font-size: 0.8em;
+  margin-bottom: 15px;
+  display: block;
+}
+
+button {
+  width: 100%;
+  background: linear-gradient(to right, #E8B000, #d3a000);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(232, 176, 0, 0.4);
+}
+
+.login-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.85em;
+}
+
+a {
+  color: #322C84;
+  text-decoration: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* ───── 📱 Mobile Responsive Design ───── */
+@media screen and (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .logo-img {
+    width: 130px;
+  }
+
+  .form-container h2 {
+    font-size: 1.4em;
+  }
+
+  .subtitle {
+    font-size: 0.9em;
+  }
+
+  .dashboard {
+    padding: 20px;
+  }
+
+  .features {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+  }
+
+  .nav-bar {
+    font-size: 1em;
+    padding: 12px;
+  }
+
+  .welcome {
+    font-size: 1.2em;
+  }
+
+  button {
+    font-size: 1em;
+    padding: 12px;
+  }
+
+  .eye-icon {
+    font-size: 1em;
+    top: 14px;
+  }
+}

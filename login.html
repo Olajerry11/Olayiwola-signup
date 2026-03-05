@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | OLAYIWOLA</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Link to shared CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Top Logo -->
+    <div class="top">
+      <img src="olayiwola-logo.png" alt="Olayiwola Logo" class="logo-img" />
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-container">
+      <h2>Login</h2>
+      <p class="subtitle">Welcome back to Olayiwola Web Design 👋</p>
+
+      <form action="dashboard.html" method="GET">
+        <input type="email" id="loginEmail" placeholder="Email" required />
+
+        <div class="password-wrapper">
+          <input type="password" id="loginPassword" placeholder="Password" required />
+          <span onclick="toggleLoginPassword()" class="eye-icon">👁️</span>
+        </div>
+
+        <p class="login-text">
+          <a href="forgot.html">Forgot Password?</a>
+        </p>
+
+        <button type="submit">Login</button>
+
+        <p class="login-text">
+          Don’t have an account?
+          <a href="index.html">Signup</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Inline Script for eye icon -->
+  <script>
+    function toggleLoginPassword() {
+      const passwordInput = document.getElementById("loginPassword");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    }
+  </script>
+</body>
+</html>
