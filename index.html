@@ -9,29 +9,29 @@
 </head>
 <body>
   <div class="container">
-    <div class="top">
+    <header class="top">
       <img src="olayiwola-logo.png" alt="Olayiwola Logo" class="logo-img">
-    </div>
+    </header>
 
-    <div class="form-container">
+    <main class="form-container">
       <h2>Signup</h2>
       <p class="subtitle">Code with purpose. Design with faith. Build with Olayiwola.</p>
 
       <form id="signupForm" onsubmit="return handleSignup(event)">
-        <input type="text" id="username" placeholder="Username" />
+        <input type="text" id="username" name="username" placeholder="Username" aria-label="Username" required />
         <small class="error" id="usernameError"></small>
 
-        <input type="email" id="email" placeholder="Email" />
+        <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" required />
         <small class="error" id="emailError"></small>
 
         <div class="password-wrapper">
-          <input type="password" id="password" placeholder="Password" />
-          <span onclick="togglePassword()" class="eye-icon">👁️</span>
+          <input type="password" id="password" name="password" placeholder="Password" aria-label="Password" required />
+          <button type="button" onclick="togglePassword()" class="eye-icon" aria-label="Toggle password visibility">👁️</button>
         </div>
         <small class="error" id="passwordError"></small>
 
         <label class="checkbox-label">
-          <input type="checkbox" required />
+          <input type="checkbox" id="termsCheckbox" name="terms" required />
           By creating an account you accept our
           <a href="#">Privacy Policy</a> &amp;
           <a href="#">Terms</a>
@@ -44,9 +44,9 @@
           <a href="login.html">Login</a>
         </p>
       </form>
-    </div>
+    </main>
   </div>
 
   <script src="script.js"></script>
 </body>
-</html> 
+</html>

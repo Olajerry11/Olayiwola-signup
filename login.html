@@ -5,54 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | OLAYIWOLA</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- Link to shared CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <!-- Top Logo -->
-    <div class="top">
+    <header class="top">
       <img src="olayiwola-logo.png" alt="Olayiwola Logo" class="logo-img" />
-    </div>
+    </header>
 
-    <!-- Login Form -->
-    <div class="form-container">
+    <main class="form-container">
       <h2>Login</h2>
       <p class="subtitle">Welcome back to Olayiwola Web Design 👋</p>
 
-      <form action="dashboard.html" method="GET">
-        <input type="email" id="loginEmail" placeholder="Email" required />
+      <form id="loginForm" onsubmit="return handleLogin(event)">
+        
+        <input type="email" id="loginEmail" name="email" placeholder="Email" aria-label="Email" required />
 
         <div class="password-wrapper">
-          <input type="password" id="loginPassword" placeholder="Password" required />
-          <span onclick="toggleLoginPassword()" class="eye-icon">👁️</span>
+          <input type="password" id="loginPassword" name="password" placeholder="Password" aria-label="Password" required />
+          <button type="button" onclick="toggleLoginPassword()" class="eye-icon" aria-label="Toggle password visibility">👁️</button>
         </div>
 
-        <p class="login-text">
+        <p class="login-text" style="text-align: right; margin-top: -5px; margin-bottom: 15px;">
           <a href="forgot.html">Forgot Password?</a>
         </p>
 
-        <button type="submit">Login</button>
+        <button type="submit" id="loginBtn">Login</button>
 
         <p class="login-text">
           Don’t have an account?
           <a href="index.html">Signup</a>
         </p>
       </form>
-    </div>
+    </main>
   </div>
 
-  <!-- Inline Script for eye icon -->
   <script>
+    // 1. Swaps the icon emoji for visual feedback
     function toggleLoginPassword() {
       const passwordInput = document.getElementById("loginPassword");
+      const eyeIcon = document.querySelector(".eye-icon");
+
       if (passwordInput.type === "password") {
         passwordInput.type = "text";
+        eyeIcon.innerText = "🙈"; 
       } else {
         passwordInput.type = "password";
+        eyeIcon.innerText = "👁️"; 
+      }
+    }
+
+    // 2. Creates a realistic "Logging in..." delay
+    function handleLogin(event) {
+      event.preventDefault(); // Stop normal fast-forward action
+      
+      const loginBtn = document.getElementById("loginBtn");
+      const emailInput = document.getElementById("loginEmail").value;
+      const passwordInput = document.getElementById("loginPassword").value;
+
+      // Basic check to ensure fields aren't just empty spaces
+      if (emailInput.trim() !== "" && passwordInput.trim() !== "") {
+        loginBtn.innerText = "Logging in...";
+        loginBtn.style.opacity = "0.8";
+
+        // Small 800ms delay to simulate server checking credentials
+        setTimeout(() => {
+          window.location.href = "dashboard.html"; 
+        }, 800);
       }
     }
   </script>

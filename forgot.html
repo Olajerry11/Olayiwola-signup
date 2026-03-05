@@ -4,46 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Forgot Password | OLAYIWOLA</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <div class="top">
-      <img src="olayiwola-logo.png" alt="Logo" class="logo-img" />
-    </div>
+    <header class="top">
+      <img src="olayiwola-logo.png" alt="Olayiwola Logo" class="logo-img" />
+    </header>
 
-    <div class="form-container">
+    <main class="form-container">
       <h2>Reset Password</h2>
       <p class="subtitle">Enter your email address to receive a reset link</p>
 
-      <form onsubmit="return fakeReset()">
-        <input type="email" id="resetEmail" placeholder="Email" required />
-        <small class="error" id="resetError"></small>
-        <button type="submit">Send Reset Link</button>
+      <form onsubmit="return handleReset(event)">
+        <input type="email" id="resetEmail" name="email" placeholder="Email" aria-label="Email" required />
+        
+        <small class="error" id="resetMessage" style="min-height: 20px; display: block; transition: color 0.3s;"></small>
+        
+        <button type="submit" id="resetBtn">Send Reset Link</button>
 
-        <p class="login-text">
+        <p class="login-text" style="margin-top: 25px;">
           Remembered your password?
           <a href="login.html">Go back to Login</a>
         </p>
       </form>
-    </div>
+    </main>
   </div>
 
   <script>
-    function fakeReset() {
-      const email = document.getElementById("resetEmail").value;
-      const resetError = document.getElementById("resetError");
+    function handleReset(event) {
+      event.preventDefault(); // Stop normal form submission
 
-      resetError.innerText = "";
+      const emailInput = document.getElementById("resetEmail").value.trim();
+      const messageBox = document.getElementById("resetMessage");
+      const resetBtn = document.getElementById("resetBtn");
 
-      if (!email.includes("@")) {
-        resetError.innerText = "Please enter a valid email";
+      // Reset messages and colors to default error red
+      messageBox.innerText = "";
+      messageBox.style.color = "#e74c3c"; 
+
+      // UPGRADE: Strict Regex email validation matching the signup page
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (emailInput === "") {
+        messageBox.innerText = "Email is required";
+        return false;
+      } else if (!emailRegex.test(emailInput)) {
+        messageBox.innerText = "Please enter a valid email address";
         return false;
       }
 
-      alert("A password reset link has been sent to: " + email);
-      return false; // prevent actual submit
+      // UPGRADE: Premium loading animation state
+      resetBtn.innerText = "Sending Link...";
+      resetBtn.style.opacity = "0.8";
+      resetBtn.disabled = true; // Prevents double-clicking
+
+      // Simulate a network request delay (1.2 seconds)
+      setTimeout(() => {
+        // Restore button back to normal
+        resetBtn.innerText = "Send Reset Link";
+        resetBtn.style.opacity = "1";
+        resetBtn.disabled = false;
+
+        // UPGRADE: Show a clean, on-page success message instead of an alert box!
+        messageBox.style.color = "#2ecc71"; // Success green color
+        messageBox.innerText = "✓ Reset link sent to your email!";
+        
+        // Clear the input box so it's ready again
+        document.getElementById("resetEmail").value = "";
+      }, 1200);
+
+      return false;
     }
   </script>
 </body>

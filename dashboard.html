@@ -10,84 +10,112 @@
 
   <style>
     .dashboard {
-      padding: 30px;
+      padding: 40px 20px;
       max-width: 900px;
       margin: auto;
       text-align: center;
     }
 
     .welcome {
-      font-size: 1.5em;
-      font-weight: 600;
+      font-size: 1.8em;
+      font-weight: 700;
       color: #322C84;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .dashboard p {
+      color: #555;
+      font-size: 1.05em;
+      margin-bottom: 40px;
     }
 
     .nav-bar {
       background-color: #322C84;
       color: white;
-      padding: 15px;
+      padding: 18px;
       text-align: center;
-      font-size: 1.2em;
-      font-weight: 500;
+      font-size: 1.3em;
+      font-weight: 600;
       border-bottom: 4px solid #E8B000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .features {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 30px;
       gap: 20px;
     }
 
+    /* UPGRADE: Made cards feel more like clickable dashboard tools */
     .card {
-      background: #f8f8f8;
-      padding: 20px;
+      background: #ffffff;
+      padding: 25px 20px;
       border-radius: 12px;
       width: 200px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid #eaeaea;
+      transition: all 0.3s ease;
+      cursor: pointer; /* Shows it's clickable */
+      font-weight: 500;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card span {
+      font-size: 2em; /* Makes the emojis pop! */
     }
 
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(50, 44, 132, 0.2);
+      box-shadow: 0 8px 25px rgba(50, 44, 132, 0.15);
+      border-color: #322C84;
     }
 
     .logout {
-      margin-top: 40px;
-      color: #322C84;
+      margin-top: 50px;
+      color: #555;
+      font-size: 0.9em;
     }
 
     .logout a {
-      color: #E8B000;
-      text-decoration: underline;
+      color: #e74c3c; /* Red color implies a logout/destructive action */
+      text-decoration: none;
       font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    .logout a:hover {
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
-  <div class="nav-bar">OLAYIWOLA Web Page Design</div>
+  <nav class="nav-bar">OLAYIWOLA Web Page Design</nav>
 
-  <div class="dashboard">
+  <main class="dashboard">
     <h1 class="welcome" id="welcomeName">Welcome! 👋</h1>
     <p>Your dashboard is ready. Start exploring your tools below.</p>
 
     <div class="features">
-      <div class="card">🛠️ Projects</div>
-      <div class="card">🎨 Templates</div>
-      <div class="card">📁 File Manager</div>
-      <div class="card">📊 Analytics</div>
-      <div class="card">🙏 Devotions</div>
+      <div class="card"><span>🛠️</span> Projects</div>
+      <div class="card"><span>🎨</span> Templates</div>
+      <div class="card"><span>📁</span> File Manager</div>
+      <div class="card"><span>📊</span> Analytics</div>
+      <div class="card"><span>🙏</span> Devotions</div>
     </div>
 
     <div class="logout">
-      Not you? <a href="login.html">Logout</a>
+      Not you? <a href="#" onclick="logoutUser(event)">Logout</a>
     </div>
-  </div>
+  </main>
 
   <script>
+    // 1. Fetch name and display it
     const name = localStorage.getItem("olayiUser");
     const welcome = document.getElementById("welcomeName");
 
@@ -95,6 +123,13 @@
       welcome.textContent = `Welcome, ${name}! 👋`;
     } else {
       welcome.textContent = "Welcome, Guest! 👋";
+    }
+
+    // 2. UPGRADE: The logic to properly clear memory on logout
+    function logoutUser(event) {
+      event.preventDefault(); // Stop normal link click
+      localStorage.removeItem("olayiUser"); // Delete the saved name!
+      window.location.href = "login.html"; // Send them back to the start
     }
   </script>
 </body>
