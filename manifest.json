@@ -1,0 +1,23 @@
+{
+  "name": "Olayiwola Dashboard",
+  "short_name": "Olayiwola",
+  "description": "Code with purpose. Design with faith.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#322C84",
+  "icons": [
+    {
+      "src": "olayiwola-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "olayiwola-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
