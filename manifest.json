@@ -1,20 +1,20 @@
 {
-  "name": "Olayiwola Dashboard",
-  "short_name": "Olayiwola",
-  "description": "Code with purpose. Design with faith.",
+  "name": "OWD Portal",
+  "short_name": "OWD",
+  "description": "Professional Web Development Workspace",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#322C84",
+  "theme_color": "#1a2530",
   "icons": [
     {
-      "src": "olayiwola-logo.png",
+      "src": "owd-logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "olayiwola-logo.png",
+      "src": "owd-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

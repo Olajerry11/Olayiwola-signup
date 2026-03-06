@@ -1,62 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Signup | OLAYIWOLA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | OWD Portal</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="owd-logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header class="top">
-      <img src="olayiwola-logo.png" alt="Olayiwola Logo" class="logo-img">
-    </header>
-
-    <main class="form-container">
-      <h2>Signup</h2>
-      <p class="subtitle">Code with purpose. Design with faith. Build with Olayiwola.</p>
-
-      <form id="signupForm" onsubmit="return handleSignup(event)">
-        <input type="text" id="username" name="username" placeholder="Username" aria-label="Username" required />
-        <small class="error" id="usernameError"></small>
-
-        <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" required />
-        <small class="error" id="emailError"></small>
-
-        <div class="password-wrapper">
-          <input type="password" id="password" name="password" placeholder="Password" aria-label="Password" required />
-          <button type="button" onclick="togglePassword()" class="eye-icon" aria-label="Toggle password visibility">👁️</button>
-        </div>
-        <small class="error" id="passwordError"></small>
-
-        <label class="checkbox-label">
-          <input type="checkbox" id="termsCheckbox" name="terms" required />
-          By creating an account you accept our
-          <a href="#">Privacy Policy</a> &amp;
-          <a href="#">Terms</a>
-        </label>
-
-        <button type="submit">Signup</button>
-
-        <p class="login-text">
-          Already have an account?
-          <a href="login.html">Login</a>
-        </p>
-      </form>
-    </main>
+  <div class="top">
+    <img src="owd-logo.png" alt="OWD Logo" class="logo-img">
   </div>
-
+  
+  <div class="container">
+    <h1>Create Account</h1>
+    <p class="subtitle">Join the OWD Portal workspace 🚀</p>
+    
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <div class="password-container">
+        <input type="password" placeholder="Password" id="password" required>
+        <span class="eye-icon" onclick="togglePassword()">👁️</span>
+      </div>
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+    
+    <p class="switch-page">Already have an account? <a href="login.html">Login</a></p>
+  </div>
+  
   <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then(registration => console.log('ServiceWorker registered!'))
-          .catch(error => console.log('ServiceWorker failed: ', error));
-      });
-    }
-  </script>
 </body>
 </html>
